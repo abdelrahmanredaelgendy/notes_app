@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:note_app/views/widgets/custom_search_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -6,17 +7,16 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           "Notes",
-          style: TextStyle(
+          style:GoogleFonts.poppins(
             fontSize: 24,
-            fontWeight: FontWeight.bold,
           ),
         ),
-        CustomSearchIcon(),
+        const CustomSearchIcon(),
       ],
     );
   }
