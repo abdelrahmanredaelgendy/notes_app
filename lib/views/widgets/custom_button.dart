@@ -6,18 +6,23 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: kPrimaryColor,
-      ),
-      child: const Center(
-        child: Text(
-          "Add",
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: kPrimaryColor,
+        ),
+        child: const Center(
+          child: Text(
+            "Add",
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
