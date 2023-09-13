@@ -61,7 +61,9 @@ class NoteListView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20),
         itemBuilder: (context, index) {
           return NoteItem(
-            color: colorArray[index] ,
+            color: index >= colorArray.length
+                ? const Color(0xffffcc80)
+                : colorArray[index],
           );
         },
         separatorBuilder: (context, index) => const SizedBox(
