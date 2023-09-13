@@ -12,3 +12,8 @@ class AddNoteEvent extends NoteEvent {
 class DeleteNoteEvent extends NoteEvent {}
 
 class LoadDataEvent extends NoteEvent {}
+class EditNoteEvent extends NoteEvent {
+  final NoteModel noteModel;
+  final int index;
+  EditNoteEvent({required this.index, required this.noteModel});
+}

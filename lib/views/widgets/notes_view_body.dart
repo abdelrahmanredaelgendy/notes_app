@@ -47,6 +47,10 @@ class _NotesBodyState extends State<NotesBody> {
               } else if (state is AddNoteSuccess) {
                 pagingController.refresh();
               }
+              else if (state is EditNoteSuccess)
+                {
+                  pagingController.refresh();
+                }
             },
             child: Expanded(
                 child: NoteListView(

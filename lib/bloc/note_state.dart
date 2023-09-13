@@ -20,3 +20,6 @@ class LoadNoteFailure extends NoteState {}
 class DeleteNoteSuccess extends NoteState {}
 
 class DeleteNoteFailure extends NoteState {}
+class EditNoteSuccess extends NoteState {}
+
+class EditNoteFailure extends NoteState {}

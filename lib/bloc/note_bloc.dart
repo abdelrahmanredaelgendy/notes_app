@@ -23,6 +23,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     on<AddNoteEvent>((event, emit) async {
       try {
         await noteBox.add(event.noteModel);
+
         emit(AddNoteSuccess());
       } catch (e) {
         emit(AddNoteFailure());
@@ -35,5 +36,16 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         emit(DeleteNoteFailure());
       }
     });
+    on<EditNoteEvent>((event, emit) async {
+      try {
+        print('edit test');
+        await noteBox.putAt(event.index, event.noteModel);
+        print('edit test  ${noteBox.values.toList()[event.index].title}');
+        emit(EditNoteSuccess());
+      } catch (e) {
+        emit(EditNoteFailure());
+      }
+    });
+
   }
 }
