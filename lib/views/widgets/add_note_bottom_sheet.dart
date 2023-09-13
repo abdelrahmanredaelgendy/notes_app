@@ -36,7 +36,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           CustomTextField(
-              hintText: title ?? "title",
+              hintText: "title",
               onSaved: (value) {
                 title = value;
               }),
@@ -44,7 +44,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
           CustomTextField(
-            hintText: subTitle ?? "Content",
+            hintText: "Content",
             onSaved: (value) {
               subTitle = value;
             },

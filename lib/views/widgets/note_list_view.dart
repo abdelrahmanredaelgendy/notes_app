@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_note_item.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class NoteListView extends StatelessWidget {
-  const NoteListView({super.key});
+  const NoteListView({super.key, required this.controller});
 
   final List<Color> colorArray = const [
     Color(0xFFFF6633),
@@ -55,20 +57,27 @@ class NoteListView extends StatelessWidget {
     Color(0xFF6666FF)
   ];
 
+  //final List<NoteModel> noteModel;
+  final PagingController<int, NoteModel> controller;
+
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        itemBuilder: (context, index) {
-          return NoteItem(
-            color: index >= colorArray.length
-                ? const Color(0xffffcc80)
-                : colorArray[index],
+    return PagedListView<int, NoteModel>(
+      pagingController: controller,
+      builderDelegate: PagedChildBuilderDelegate<NoteModel>(
+        firstPageErrorIndicatorBuilder: (context) =>
+            const Center(child: Text("Can not load data")),
+        firstPageProgressIndicatorBuilder: (context) =>
+            const Center(child: CircularProgressIndicator()),
+        itemBuilder: (context, item, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            child: NoteItem(
+              noteModel: item,
+            ),
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(
-              height: 12,
-            ),
-        itemCount: 12);
+      ),
+    );
   }
 }
