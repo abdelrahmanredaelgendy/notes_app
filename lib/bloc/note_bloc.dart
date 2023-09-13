@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/constants.dart';
 import '../models/note_model.dart';
+
 part 'note_event.dart';
 
 part 'note_state.dart';

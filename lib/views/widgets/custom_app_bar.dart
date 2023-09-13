@@ -4,8 +4,10 @@ import 'package:note_app/views/widgets/custom_search_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, required this.title, required this.icon});
+
   final String title;
   final IconData icon;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,11 +15,11 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Text(
           title,
-          style:GoogleFonts.poppins(
+          style: GoogleFonts.poppins(
             fontSize: 24,
           ),
         ),
-         CustomSearchIcon(icon:icon),
+        CustomSearchIcon(icon: icon),
       ],
     );
   }

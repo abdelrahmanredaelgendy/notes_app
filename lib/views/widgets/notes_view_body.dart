@@ -44,10 +44,8 @@ class _NotesBodyState extends State<NotesBody> {
                 pagingController.appendLastPage(noteList);
               } else if (state is DeleteNoteSuccess) {
                 pagingController.refresh();
-                print('AddNote Delete ${pagingController.itemList?.length}');
               } else if (state is AddNoteSuccess) {
                 pagingController.refresh();
-                print('AddNote AddNote ${pagingController.itemList?.length}');
               }
             },
             child: Expanded(

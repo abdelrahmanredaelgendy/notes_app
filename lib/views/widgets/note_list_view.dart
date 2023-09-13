@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_note_item.dart';
 
@@ -10,8 +8,6 @@ class NoteListView extends StatelessWidget {
   final PagingController<int, NoteModel> pagingController;
 
   const NoteListView({super.key, required this.pagingController});
-
-
 
   @override
   Widget build(BuildContext context) {
