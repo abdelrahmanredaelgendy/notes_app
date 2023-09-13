@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:note_app/bloc/note_bloc.dart';
-import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_note_item.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class NoteListView extends StatelessWidget {
+  const NoteListView({super.key});
+
   final List<Color> colorArray = const [
     Color(0xFFFF6633),
     Color(0xFFFFB399),
@@ -57,45 +54,21 @@ class NoteListView extends StatelessWidget {
     Color(0xFF99E6E6),
     Color(0xFF6666FF)
   ];
-  final PagingController<int, NoteModel> pagingController ;
-  const  NoteListView({super.key, required this.pagingController});
-
-  //final List<NoteModel> noteModel;
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, NoteModel>(
-      pagingController: pagingController,
-      builderDelegate: PagedChildBuilderDelegate<NoteModel>(
-        noItemsFoundIndicatorBuilder: (context) => Center(
-          child: Text(
-            "No Notes Try Add Note",
-            style: GoogleFonts.poppins(fontSize: 30),
-          ),
-        ),
-        // noMoreItemsIndicatorBuilder: (context) => Center(
-        //   child: Text(
-        //     "No Notes Try Add Note",
-        //     style: GoogleFonts.poppins(fontSize: 30),
-        //   ),
-        // ),
-        firstPageErrorIndicatorBuilder: (context) => Center(
-          child: Text(
-            "Can not load data",
-            style: GoogleFonts.poppins(fontSize: 30),
-          ),
-        ),
-        firstPageProgressIndicatorBuilder: (context) =>
-            const Center(child: CircularProgressIndicator()),
-        itemBuilder: (context, item, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            child: NoteItem(
-              noteModel: item,
-            ),
+    return ListView.separated(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        itemBuilder: (context, index) {
+          return NoteItem(
+            color: index >= colorArray.length
+                ? const Color(0xffffcc80)
+                : colorArray[index],
           );
         },
-      ),
-    );
+        separatorBuilder: (context, index) => const SizedBox(
+              height: 12,
+            ),
+        itemCount: 12);
   }
 }
