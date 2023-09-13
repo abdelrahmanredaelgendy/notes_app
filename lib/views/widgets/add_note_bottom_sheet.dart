@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/bloc/note_bloc.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_button.dart';
 import 'package:note_app/views/widgets/custom_text_field.dart';
 
@@ -36,7 +39,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           CustomTextField(
-              hintText: title ?? "title",
+              hintText: "title",
               onSaved: (value) {
                 title = value;
               }),
@@ -44,7 +47,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
           CustomTextField(
-            hintText: subTitle ?? "Content",
+            hintText: "Content",
             onSaved: (value) {
               subTitle = value;
             },
@@ -57,6 +60,16 @@ class _AddNoteFormState extends State<AddNoteForm> {
             onTap: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                BlocProvider.of<NoteBloc>(context).add(
+                  AddNoteEvent(
+                    noteModel: NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: '22,may 2023',
+                        color: 0xffffcc80),
+                  ),
+                );
+                Navigator.pop(context);
               } else {
                 autovalidate = AutovalidateMode.always;
                 setState(() {});
