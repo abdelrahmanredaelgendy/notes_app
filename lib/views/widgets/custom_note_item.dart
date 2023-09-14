@@ -44,7 +44,6 @@ class NoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () async{
-                  // await noteModel.delete();
                   BlocProvider.of<NoteBloc>(context).add(DeleteNoteEvent(noteModel: noteModel));
                 },
                 icon: const Icon(
@@ -57,7 +56,7 @@ class NoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Text(
-                '21 May,2022',
+                noteModel.date,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: Colors.black.withOpacity(0.5),

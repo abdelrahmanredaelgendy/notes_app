@@ -5,12 +5,18 @@ import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_app_bar.dart';
 import 'package:note_app/views/widgets/custom_text_field.dart';
 
-class EditNoteBody extends StatelessWidget {
-   EditNoteBody({super.key, required this.noteModel, required this.index});
+class EditNoteBody extends StatefulWidget {
+  const EditNoteBody({super.key, required this.noteModel, required this.index});
 
   final NoteModel noteModel;
-  String? title, subTitle;
   final int index;
+
+  @override
+  State<EditNoteBody> createState() => _EditNoteBodyState();
+}
+
+class _EditNoteBodyState extends State<EditNoteBody> {
+  String? title, subTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +32,24 @@ class EditNoteBody extends StatelessWidget {
               BlocProvider.of<NoteBloc>(context).add(
                 EditNoteEvent(
                     noteModel: NoteModel(
-                        title: title ?? noteModel.title,
-                        subTitle: subTitle ?? noteModel.subTitle,
+                        title: title ?? widget.noteModel.title,
+                        subTitle: subTitle ?? widget.noteModel.subTitle,
                         date: '22,may 2023',
-                        color: noteModel.color),
-                    index: index),
+                        color: widget.noteModel.color),
+                    index: widget.index),
               );
               Navigator.pop(context);
             },
           ),
           const SizedBox(height: 50),
           CustomTextField(
-              hintText: noteModel.title,
+              hintText: widget.noteModel.title,
               onChanged: (value) {
                 title = value;
-
               }),
           const SizedBox(height: 24),
           CustomTextField(
-            hintText: noteModel.subTitle,
+            hintText: widget.noteModel.subTitle,
             maxLines: 5,
             onChanged: (value) {
               subTitle = value;
