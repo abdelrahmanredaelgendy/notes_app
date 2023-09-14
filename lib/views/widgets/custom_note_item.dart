@@ -44,8 +44,8 @@ class NoteItem extends StatelessWidget {
               ),
               trailing: IconButton(
                 onPressed: () async{
-                  await noteModel.delete();
-                  BlocProvider.of<NoteBloc>(context).add(DeleteNoteEvent());
+                  // await noteModel.delete();
+                  BlocProvider.of<NoteBloc>(context).add(DeleteNoteEvent(noteModel: noteModel));
                 },
                 icon: const Icon(
                   FontAwesomeIcons.trash,

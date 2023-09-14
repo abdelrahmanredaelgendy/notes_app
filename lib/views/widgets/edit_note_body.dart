@@ -6,10 +6,12 @@ import 'package:note_app/views/widgets/custom_app_bar.dart';
 import 'package:note_app/views/widgets/custom_text_field.dart';
 
 class EditNoteBody extends StatelessWidget {
-  EditNoteBody({super.key, required this.noteModel, required this.index});
+   EditNoteBody({super.key, required this.noteModel, required this.index});
+
   final NoteModel noteModel;
   String? title, subTitle;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,13 +25,12 @@ class EditNoteBody extends StatelessWidget {
             onTap: () {
               BlocProvider.of<NoteBloc>(context).add(
                 EditNoteEvent(
-                  noteModel: NoteModel(
-                      title: title ?? "aaa",
-                      subTitle: subTitle ?? noteModel.subTitle,
-                      date: '22,may 2023',
-                      color: noteModel.color),
-                  index:index
-                ),
+                    noteModel: NoteModel(
+                        title: title ?? noteModel.title,
+                        subTitle: subTitle ?? noteModel.subTitle,
+                        date: '22,may 2023',
+                        color: noteModel.color),
+                    index: index),
               );
               Navigator.pop(context);
             },
@@ -37,17 +38,15 @@ class EditNoteBody extends StatelessWidget {
           const SizedBox(height: 50),
           CustomTextField(
               hintText: noteModel.title,
-              onSaved: (value) {
-                if(value !=null)
+              onChanged: (value) {
                 title = value;
-                else
-                  title =noteModel.title;
+
               }),
           const SizedBox(height: 24),
           CustomTextField(
             hintText: noteModel.subTitle,
             maxLines: 5,
-            onSaved: (value) {
+            onChanged: (value) {
               subTitle = value;
             },
           ),

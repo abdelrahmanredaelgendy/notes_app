@@ -31,6 +31,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     });
     on<DeleteNoteEvent>((event, emit) async {
       try {
+        await event.noteModel.delete();
         emit(DeleteNoteSuccess());
       } catch (e) {
         emit(DeleteNoteFailure());
@@ -38,14 +39,12 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     });
     on<EditNoteEvent>((event, emit) async {
       try {
-        print('edit test');
         await noteBox.putAt(event.index, event.noteModel);
-        print('edit test  ${noteBox.values.toList()[event.index].title}');
+
         emit(EditNoteSuccess());
       } catch (e) {
         emit(EditNoteFailure());
       }
     });
-
   }
 }
